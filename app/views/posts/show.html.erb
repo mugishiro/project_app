@@ -1,0 +1,57 @@
+<div class="main posts-show">
+  <div class="container">
+
+    <div class="posts-show-item">
+      <p>
+        <%= @post.content %>
+      </p>
+      <div class="post-time">
+        <%= @post.created_at %>
+      </div>
+      <div class="post-answer-menus">
+        <% if @current_user && @post.user_id == @current_user.id %>
+          <%= link_to "/posts/#{@post.id}/destory", method: "post" do %>
+            <span class = "fa fa-cut"></span>
+            締め切る
+          <% end %>
+          <%= link_to "/posts/#{@post.id}/destory", {method: "post"} do %>
+            <span class = "fa fa-trash"></span>
+            削除する
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <!--ログインユーザーと異なる場合、回答画面を表示 -->
+    <% if !@current_user || @post.user_id != @current_user.id %>
+      <div class="post-answer">
+        <%= form_tag("/answers/#{@post.id}/create") do %>
+          <div class="form">
+            <div class="form-body">
+              <% @post.errors.full_messages.each do |message| %>
+                <div class="form-error">
+                  <%= message %>
+                </div>
+              <% end %>
+              <textarea name="content"><%= @answer.content %></textarea>
+              <input type="submit" value="回答する">
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @answers.length == 0 %>
+      <div class="answers-index-item">
+        <p>まだ回答がありません</p>
+      </div>
+    <% else %>
+      <% @answers.each do |answer| %>
+        <div class="answers-index-item">
+          <%= answer.content %>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

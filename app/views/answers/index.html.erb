@@ -1,0 +1,12 @@
+<div class="main posts-index">
+  <div class="container">
+    <% @answers.each do |answer| %>
+      <div class="posts-index-item">
+        <div class="post-right">
+          <%= answer.content %>
+          <%= answer.post_id %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="main user-show">
+  <div class="container">
+
+    <div class="user">
+      <img src="<%= "/user_images/#{@user.image_name}" %>">
+      <h2><%= @user.name %></h2>
+      <% if @current_user && @user.id == @current_user.id %>
+        <div class="user-edit">
+          <%= link_to "/edit" do %>
+            <span class = "fa fa-edit"></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <!--ログインユーザーと同じ場合、質問画面を表示-->
+    <% if @current_user && @user.id == @current_user.id %>
+      <div class="user-post">
+        <p>
+        <textarea name="text2" id="text2" autocomplete="off"></textarea>
+
+        </p>
+
+        <div class="form">
+          <div class="form-body">
+            <% @post.errors.full_messages.each do |message| %>
+              <div class="form-error">
+                <%= message %>
+              </div>
+            <% end %>
+            <textarea name="content" id="text2"><%= @post.content %></textarea>
+            <span class="count">0</span>/1000
+            <input type="submit" id="submit2" class="modal-syncer" data-target="modal-content-post" value="質問する">
+          </div>
+        </div>
+
+      </div>
+    <% end %>
+
+    <div class="post-answers">
+      <% if @posts.length == 0 %>
+        <div class="posts-index-item">
+          <p>まだ質問がありません</p>
+        </div>
+      <% else %>
+        <% @posts.each do |post| %>
+          <div class="posts-index-item">
+            <div class="post-left">
+              <%= link_to image_tag("/user_images/#{@user.image_name}"), "/#{post.user.id}" %>
+            </div>
+            <div class="post-right">
+              <div class="post-user-name">
+                <%= link_to(post.user.name, "/#{post.user.id}") %>
+              </div>
+                <%= link_to(simple_format(post.content), "/posts/#{post.id}") %>
+              <% if @current_user && @user.id != @current_user.id %>
+                <div class="post-reply">
+                  <%= link_to "/posts/#{post.id}" do %>
+                    <span class = "fa fa-reply"></span>
+                    回答する
+                  <% end %>
+                </div>
+              <% elsif @current_user && @user.id == @current_user.id %>
+                <div class="post-answer-menus">
+                  <%= link_to "/posts/#{post.id}/destory", method: "post" do %>
+                    <span class = "fa fa-cut"></span>
+                    締め切る
+                  <% end %>
+                  <a class="modal-syncer" data-target="modal-content-destroy">
+                    <span class = "fa fa-trash"></span>
+                    削除する
+                  </a>
+                  <!-- モーダルウィンドウ -->
+                  <div id="modal-content-destroy" class="modal-content">
+                    <%= link_to "/posts/#{post.id}/destory", method: "post" do %>
+                      <span class = "fa fa-trash"></span>
+                      削除する
+                    <% end %>
+                    <p><a id="modal-close" class="button-link">閉じる</a></p>
+                  </div>
+                  <!-- モーダルウィンドウ -->
+                  <%= link_to "/posts/#{post.id}" do %>
+                    <span class = "fa fa-check"></span>
+                    回答を見る
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="modal-content-post" class="modal-content">
+  <!-- モーダルウィンドウ -->
+  <%= form_tag("/posts/create") do %>
+    <div class="form">
+      <div class="form-body">
+        <% @post.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+        <textarea name="content"><%= @post.content %></textarea>
+        <input type="submit" value="質問する">
+      </div>
+    </div>
+    <p><a id="modal-close" class="button-link">閉じる</a></p>
+  <% end %>
+  <!-- モーダルウィンドウ -->
+</div>

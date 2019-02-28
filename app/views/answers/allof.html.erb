@@ -1,0 +1,13 @@
+<div class="main answers-index">
+  <div class="container">
+    <% @answers.each do |answer| %>
+      <div class="answers-index-item">
+        <p>id:<%= answer.id %></p>
+        <p>content:<%= answer.content %></p>
+        <p>post_id:<%= answer.post_id %></p>
+        <p>create:<%= answer.created_at %></p>
+        <p>update:<%= answer.updated_at %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

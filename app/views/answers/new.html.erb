@@ -1,0 +1,14 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">回答する</h1>
+    <%= form_tag("/answers/#{@id}/create") do %>
+      <div class="form">
+        <div class="form-body">
+
+          <textarea name="content"><%= @answer.content %></textarea>
+          <input type="submit" value="回答する">
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

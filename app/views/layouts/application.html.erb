@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Project</title>
+    <%= csrf_meta_tags %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+    <header>
+      <div class="header-logo">
+        <% if @current_user %>
+          <%= link_to("プロジェクト", "/posts/index") %>
+        <% else %>
+          <%= link_to("プロジェクト", "/") %>
+        <% end %>
+      </div>
+      <ul class="header-menus">
+        <% if @current_user %>
+          <li>
+            <%= link_to "/#{@current_user.id}" do %>
+              <span class = "fa fa-home"> マイページ</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "/posts/new" do %>
+              <span class = "fa fa-paper-plane"> 新規投稿</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "/follower" do %>
+              <span class = "fa fa-users"> フォロワー</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "/logout", method: :post do %>
+              <span class = "fa fa-door-open"> ログアウト</span>
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to("TweetAppとは", "/about") %>
+          </li>
+          <li>
+            <%= link_to "/signup" do %>
+              <span class = "fa fa-sign-in-alt"> 新規登録</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "/login" do %>
+              <span class = "fa fa-door-open"> ログイン</span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </header>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+
+
+    <%= yield %>
+
+
+  </body>
+</html>

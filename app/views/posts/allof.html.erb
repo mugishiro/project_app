@@ -1,0 +1,13 @@
+<div class="main posts-index">
+  <div class="container">
+    <% @posts.each do |post| %>
+      <div class="posts-index-item">
+        <p>id:<%= post.id %></p>
+        <p>user_id:<%= post.user_id %></p>
+        <p>content:<%= post.content %></p>
+        <p>create:<%= post.created_at %></p>
+        <p>update:<%= post.updated_at %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

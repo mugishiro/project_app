@@ -1,0 +1,17 @@
+<div class="main users-index">
+  <div class="container">
+    <h1 class="users-heading">フォロワー</h1>
+    <% @users.each do |user| %>
+      <div class="users-index-item">
+        <div class="user-left">
+          <div class="post-left">
+            <%= link_to image_tag("/user_images/#{user.image_name}"), "/#{user.id}" %>
+          </div>
+        </div>
+        <div class="user-right">
+          <%= link_to(user.name, "/#{user.id}") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
