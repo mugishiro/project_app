@@ -1,7 +1,7 @@
 <div class="main posts-new">
   <div class="container">
     <h1 class="form-heading">質問する</h1>
-
+     <%= form_tag("/posts/create") do %>
       <div class="form">
         <div class="form-body">
           <% @post.errors.full_messages.each do |message| %>
@@ -10,9 +10,10 @@
             </div>
           <% end %>
           <textarea name="content"><%= @post.content %></textarea>
-          <input type="submit" class="modal-syncer" data-target="modal-content-post" value="質問する">
+          <input type="submit" value="質問する">
         </div>
       </div>
-      
+    <% end %>
+  
   </div>
 </div>

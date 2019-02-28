@@ -17,24 +17,20 @@
     <!--ログインユーザーと同じ場合、質問画面を表示-->
     <% if @current_user && @user.id == @current_user.id %>
       <div class="user-post">
-        <p>
-        <textarea name="text2" id="text2" autocomplete="off"></textarea>
-
-        </p>
-
-        <div class="form">
-          <div class="form-body">
-            <% @post.errors.full_messages.each do |message| %>
-              <div class="form-error">
-                <%= message %>
-              </div>
-            <% end %>
-            <textarea name="content" id="text2"><%= @post.content %></textarea>
-            <span class="count">0</span>/1000
-            <input type="submit" id="submit2" class="modal-syncer" data-target="modal-content-post" value="質問する">
+        <%= form_tag("/posts/create") do %>
+          <div class="form">
+            <div class="form-body">
+              <% @post.errors.full_messages.each do |message| %>
+                <div class="form-error">
+                  <%= message %>
+                </div>
+              <% end %>
+              <textarea name="content" id="text2"><%= @post.content %></textarea>
+              <span class="count">0</span>/1000
+              <input type="submit"  value="質問する">
+            </div>
           </div>
-        </div>
-
+        <% end %>
       </div>
     <% end %>
 
