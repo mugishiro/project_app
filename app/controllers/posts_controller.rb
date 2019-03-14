@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user, {only: [:index, :new, :create]}
-  before_action :ensure_correct_user, {only: [:destroy]}
+  before_action :ensure_correct_user, {only: [:destroy, :close]}
 
   def allof
     @posts = Post.all.order(created_at: :desc)
@@ -17,7 +17,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(
       content: params[:content],
-      user_id: @current_user.id
+      user_id: @current_user.id,
+      status: false
     )
     if @post.save
       flash[:notice] = "質問を投稿しました"
@@ -37,6 +38,14 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.destroy
     flash[:notice] = "投稿を削除しました"
+    redirect_to("/#{@current_user.id}")
+  end
+
+  def close
+    @post = Post.find_by(id: params[:id])
+    @post.status = true
+    @post.save
+    flash[:notice] = "回答を締め切りました"
     redirect_to("/#{@current_user.id}")
   end
 

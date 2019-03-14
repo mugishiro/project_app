@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "posts/:id" => "posts#show"
   post "posts/create" => "posts#create"
   post "posts/:id/destory" => "posts#destroy"
+  post "posts/:id/close" => "posts#close"
 
   get "answers/allof" => "answers#allof"
   get "answers/index" => "answers#index"
@@ -27,4 +28,6 @@ Rails.application.routes.draw do
   post "logout" => "users#logout"
   get "follower" => "users#index"
   get ":id" => "users#show"
+  get ":id/close" => "users#close"
+
 end

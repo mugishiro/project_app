@@ -10,9 +10,11 @@
       </div>
       <div class="post-answer-menus">
         <% if @current_user && @post.user_id == @current_user.id %>
-          <%= link_to "/posts/#{@post.id}/destory", method: "post" do %>
-            <span class = "fa fa-cut"></span>
-            締め切る
+          <% if @post.status == false%>
+            <%= link_to "/posts/#{@post.id}/close", method: "post" do %>
+              <span class = "fa fa-cut"></span>
+              締め切る
+            <% end %>
           <% end %>
           <%= link_to "/posts/#{@post.id}/destory", {method: "post"} do %>
             <span class = "fa fa-trash"></span>
@@ -23,6 +25,11 @@
     </div>
 
     <!--ログインユーザーと異なる場合、回答画面を表示 -->
+    <% if @post.status %>
+      <div class="posts-status-item">
+        <p>回答を締め切りました</p>
+      </div>
+    <% end %>
     <% if !@current_user || @post.user_id != @current_user.id %>
       <div class="post-answer">
         <%= form_tag("/answers/#{@post.id}/create") do %>
@@ -43,7 +50,7 @@
 
     <% if @answers.length == 0 %>
       <div class="answers-index-item">
-        <p>まだ回答がありません</p>
+        <p>回答がありません</p>
       </div>
     <% else %>
       <% @answers.each do |answer| %>

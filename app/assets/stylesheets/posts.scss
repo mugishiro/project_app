@@ -98,7 +98,7 @@
 }
 
 .post-answers {
-  box-shadow: 0 2px 6px #1cd418;
+  box-shadow: 0 2px 6px #c1ced7;
   border-radius: 10px;
 }
 
@@ -109,4 +109,17 @@
 .posts-new textarea::-webkit-input-placeholder {
   font-size: 24px;
   opacity: 0.5;
+}
+
+
+.posts-status-item {
+  padding: 30px;
+  margin-bottom: 30px;
+  background-color: white;
+  box-shadow: 0 2px 6px #c1ced7;
+  overflow: hidden;
+}
+
+.posts-status-item p {
+  text-align: center;
 }

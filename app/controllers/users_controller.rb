@@ -87,7 +87,13 @@ class UsersController < ApplicationController
   def show
     @post = Post.new
     @user = User.find_by(id: params[:id])
-    @posts = @user.posts.order(created_at: :desc)
+    @posts = @user.posts.order(created_at: :desc).where(status: false)
+  end
+
+  def close
+    @post = Post.new
+    @user = User.find_by(id: params[:id])
+    @posts = @user.posts.order(created_at: :desc).where(status: true)
   end
 
 end

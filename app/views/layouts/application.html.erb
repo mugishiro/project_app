@@ -2,7 +2,7 @@
 <html>
   <head>
 
-    <title>Project</title>
+    <title>Question</title>
     <%= csrf_meta_tags %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -18,9 +18,9 @@
     <header>
       <div class="header-logo">
         <% if @current_user %>
-          <%= link_to("プロジェクト", "/posts/index") %>
+          <%= link_to("Question", "/posts/index") %>
         <% else %>
-          <%= link_to("プロジェクト", "/") %>
+          <%= link_to("Question", "/") %>
         <% end %>
       </div>
       <ul class="header-menus">
@@ -47,7 +47,9 @@
           </li>
         <% else %>
           <li>
-            <%= link_to("TweetAppとは", "/about") %>
+            <%= link_to "/about" do %>
+              <span class = "fa fa-map-pin"> Questionとは</span>
+            <% end %>
           </li>
           <li>
             <%= link_to "/signup" do %>

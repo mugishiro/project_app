@@ -35,8 +35,8 @@
     <% end %>
 
     <ul class="user-tabs">
-      <li class="active"><%= link_to("受付中の質問", "/#{@user.id}") %></li>
-      <li><%= link_to("締め切った質問", "/#{@user.id}/close") %></li>
+      <li><%= link_to("受付中の質問", "/#{@user.id}") %></li>
+      <li class="active"><%= link_to("締め切った質問", "/#{@user.id}/close") %></li>
     </ul>
 
     <div class="post-answers">
@@ -56,18 +56,9 @@
               </div>
                 <%= link_to(simple_format(post.content), "/posts/#{post.id}") %>
               <% if @current_user && @user.id != @current_user.id %>
-                <div class="post-reply">
-                  <%= link_to "/posts/#{post.id}" do %>
-                    <span class = "fa fa-reply"></span>
-                    回答する
-                  <% end %>
-                </div>
+
               <% elsif @current_user && @user.id == @current_user.id %>
                 <div class="post-answer-menus">
-                  <%= link_to "/posts/#{post.id}/close", method: "post" do %>
-                    <span class = "fa fa-cut"></span>
-                    締め切る
-                  <% end %>
                   <%= link_to "/posts/#{post.id}/destory", method: "post" do %>
                     <span class = "fa fa-trash"></span>
                     削除する
