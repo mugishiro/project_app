@@ -68,3 +68,7 @@ gem 'rails-i18n'
 group :production do
   gem 'pg'
 end
+
+#bootstrap 4
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
