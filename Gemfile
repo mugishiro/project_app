@@ -61,6 +61,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'twitter'
 
 #error_message
 gem 'rails-i18n'

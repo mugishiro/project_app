@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get "/" => "home#top"
   get "about" => "home#about"
 
+  # twitter routes
+  get "/tweet" => "tweet#timeline"
+  get "/signout_twitter" => "sessions#destroy"
+
   get "posts/allof" => "posts#allof"
   get "posts/index" => "posts#index"
   get "posts/new" => "posts#new"
