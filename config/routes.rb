@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get "posts/new" => "posts#new"
   get "posts/:id" => "posts#show"
   post "posts/create" => "posts#create"
-  post "posts/:id/destory" => "posts#destroy"
+  post "posts/:id/destroy" => "posts#destroy"
   post "posts/:id/close" => "posts#close"
 
   get "answers/allof" => "answers#allof"

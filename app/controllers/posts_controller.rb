@@ -30,6 +30,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
+    @user = @post.user
     @answers = Answer.where(post_id: @post.id)
     @answer = Answer.new
   end

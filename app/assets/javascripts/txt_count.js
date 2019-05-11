@@ -10,6 +10,10 @@ $(function(){
         } else {
             $('.count').css({color:'#000000',fontWeight:'normal'});
         }
+
+      console.log($(this).val());
+      $("#textarea1").val =  $(this).val();
+
     });
     $(window).load(function(){
         $('.count').html(countMax);

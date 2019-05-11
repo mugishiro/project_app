@@ -1,6 +1,18 @@
 <div class="main posts-show">
   <div class="container">
 
+    <div class="user-show user">
+      <img src="<%= "/user_images/#{@user.image_name}" %>">
+      <h2><%= @user.name %></h2>
+      <% if @current_user && @user.id == @current_user.id %>
+        <div class="user-edit">
+          <%= link_to "/edit" do %>
+            <span class = "fa fa-edit"></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
     <div class="posts-show-item">
       <p>
         <%= @post.content %>
@@ -10,7 +22,7 @@
       </div>
       <div class="post-answer-menus">
         <% if @current_user && @post.user_id == @current_user.id %>
-          <% if @post.status == false%>
+          <% if @post.status == false %>
             <%= link_to "/posts/#{@post.id}/close", method: "post" do %>
               <span class = "fa fa-cut"></span>
               締め切る
@@ -24,12 +36,13 @@
       </div>
     </div>
 
-    <!--ログインユーザーと異なる場合、回答画面を表示 -->
-    <% if @post.status %>
+    <% if @post.status == true %>
+    <p>回答を締め切りました</p>
       <div class="posts-status-item">
         <p>回答を締め切りました</p>
       </div>
     <% end %>
+
     <% if !@current_user || @post.user_id != @current_user.id %>
       <div class="post-answer">
         <%= form_tag("/answers/#{@post.id}/create") do %>
