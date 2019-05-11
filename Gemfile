@@ -59,7 +59,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #omniauth
-gem 'devise'
+gem "devise", ">= 4.6.0"
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
@@ -72,5 +72,5 @@ group :production do
 end
 
 #bootstrap 4
-gem 'bootstrap', '~> 4.1.1'
+gem "bootstrap", ">= 4.3.1"
 gem 'jquery-rails'
