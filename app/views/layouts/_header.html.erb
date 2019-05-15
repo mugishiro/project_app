@@ -1,0 +1,49 @@
+<header>
+  <div class="header-logo">
+    <% if @current_user %>
+      <%= link_to("Question", "/#{@current_user.id}") %>
+    <% else %>
+      <%= link_to("Question", "/") %>
+    <% end %>
+  </div>
+  <ul class="header-menus">
+    <% if @current_user %>
+      <li>
+        <%= link_to "/#{@current_user.id}" do %>
+          <span class = "fa fa-home"> マイページ</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "/posts/new" do %>
+          <span class = "fa fa-paper-plane"> 新規投稿</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "/follower" do %>
+          <span class = "fa fa-users"> フォロワー</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "/logout", method: :post do %>
+          <span class = "fa fa-door-open"> ログアウト</span>
+        <% end %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "/about" do %>
+          <span class = "fa fa-map-pin"> Questionとは</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "/signup" do %>
+          <span class = "fa fa-sign-in-alt"> 新規登録</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "/login" do %>
+          <span class = "fa fa-door-open"> ログイン</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</header>
